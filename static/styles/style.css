@@ -1,9 +1,9 @@
-.textarea {
-  width: 500px;
-  height: 200px;
-  word-break: break-all;
+div{
+    border-bottom: 3px;
 }
-
-.error {
-  color: red;
+.auth{
+    font-style: italic;
+}
+.error{
+    color: red;
 }
