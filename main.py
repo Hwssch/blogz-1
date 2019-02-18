@@ -21,9 +21,9 @@ class Blog(db.Model):
     pub_date = db.Column(db.DateTime)
     author_username = db.Column(db.String(20))
 
-    def __init__(self, name, body,owner, pub_date,author_username):
+    def __init__(self, name, body, owner, pub_date, author_username):
         self.title = name
-        self.body =body
+        self.body = body
         self.owner = owner
         self.pub_date = pub_date
         self.author_username = author_username
@@ -127,7 +127,7 @@ def login():
         password = request.form['password']
 
         if User.query.filter_by(username=user_name).first() == None:
-            name_err='Invalid username'
+            name_err ='Invalid username'
         else:
             current_user = User.query.filter_by(username=user_name).first()
             
