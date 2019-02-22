@@ -21,12 +21,12 @@ class Blog(db.Model):
     pub_date = db.Column(db.DateTime)
     author_username = db.Column(db.String(20))
 
-    def __init__(self, name, body, owner, pub_date, author_username):
+    def __init__(self, name, body, owner, pub_date):
         self.title = name
         self.body = body
         self.owner = owner
         self.pub_date = pub_date
-        self.author_username = author_username
+        
        
 
 class User(db.Model):
@@ -35,7 +35,7 @@ class User(db.Model):
     password = db.Column(db.String(20))
     blogs = db.relationship('Blog', backref='owner_id')
 
-    def __init__(self,username,password):
+    def __init__(self, username, password):
         self.username = username
         self.password = password
      
@@ -67,11 +67,11 @@ def blog():
     elif username_get is not None:
         author = User.query.filter_by(username = username_get).first()
         blogs = Blog.query.filter_by(owner=author.id)
-        return render_template('singleUser.html',title = 'blog', blogs=blogs)
+        return render_template('blog.html',title = 'blog', blogs=blogs)
     elif 'username' in session:
         author = User.query.filter_by(username = session['username']).first()
-        blogs = Blog.query.filter_by(owner=author.id)
-        return render_template('singleUser.html',title ='blog',blogs=blogs)
+        #blogs = Blog.query.filter_by(owner=author.id)
+        return render_template('blog.html',title ='blog',blogs=blogs)
 
     return render_template('blog.html',title="Blog", blogs=blogs)
 
